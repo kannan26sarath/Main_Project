@@ -44,9 +44,14 @@ class EventBook(models.Model):
 
 
 class EventFood(models.Model):
+    FOOD_CHOICES = (
+        ('veg', 'Vegetarian'),
+        ('nonveg', 'Non-vegetarian & Vegetarian'),
+    )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    veg = models.BooleanField(default=False)
-    non_veg = models.BooleanField(default=False)
+    # veg = models.BooleanField(default=False)
+    # non_veg = models.BooleanField(default=False)
+    food_type = models.CharField(max_length=10, choices=FOOD_CHOICES,default=False)
 
 
 
