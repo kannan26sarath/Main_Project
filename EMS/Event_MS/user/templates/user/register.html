@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {%load crispy_forms_tags%}
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
-<body>
-<form method="post">
+{% extends 'user/base.html'%}
+{%load crispy_forms_tags%}\
+{%block title%}user registration{%endblock%}
+{% block body %}
+{%block name%}<h1><center><ul>User Registration</ul></center></h1>{%endblock%}
+<form method="post" autocomplete="off">
     {%csrf_token%}
     {{form|crispy}}
-    <input type="submit" value="register">
-</form>
+    {{pform|crispy}}
 
-</body>
-</html>
+    <input type="submit" class="btn btn-primary"value="register">
+</form>
+{% endblock %}

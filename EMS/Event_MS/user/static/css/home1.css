@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: #fff url("hero-bg.jpg") no-repeat center center;
+  background: #fff url("hero-g.jpg") no-repeat center center;
 }
 
 /* Back to top button */
@@ -286,8 +286,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Nav Meu Container */
 #nav-menu-container {
-  float: right;
-  margin: 0;
+  float: left;
+  margin:1px;
 }
 
 @media (max-width: 768px) {

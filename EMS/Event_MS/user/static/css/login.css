@@ -123,6 +123,8 @@ input::placeholder{
 
 .effect-2{border: 0; padding: 7px 0; border-bottom: 1px solid #ccc;}
 
+
+}
 .forget button{
 	margin-top: 50px;
 	border-radius: 0;
@@ -130,3 +132,11 @@ input::placeholder{
 	margin-left: 50px;
 	font-weight: 700;
 }
+.fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    /*font-size: inherit;*/
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 44px;
+    margin-left: 230px;}

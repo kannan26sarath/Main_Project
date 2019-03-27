@@ -3,9 +3,10 @@
 <html lang="en">
 <head>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="{% static 'css/login.css'%}" >
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/login.css'%}" >
+
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -27,7 +28,7 @@
   					<hr>
   					<hr class="short">
   				</div>
-  				<form action="{% url 'user:login' %}" method="post">
+  				<form action="{% url 'user:login' %}" method="post" autocomplete="off">
                     {% csrf_token %}
   					<div class="col-3">
 			        	<input class="effect-2" type="text" placeholder="Login..." name="username">
@@ -36,19 +37,43 @@
 			            <input class="effect-2" type="password" placeholder="Password..." name="password" >
 			            <span class="focus-border"></span>
 			        </div>
+					<div class="row">
+            			{% if messages %}
+            			{% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                  <center><p style="color: red";>{{ message }}</p></center>
+							</div>
+            {% endfor %}
+          {% endif %}
+
+        </div>
+					<div class="border-top pt-3">
+            <small class="text-muted">
+                Don't Have An Account? <a class="ml-2" href="/Register">Sign up</a>
+            </small>
+
 
 			        <div class="forget">
-			        	<button class="btn btn-default btn-sm">FORGOT PASSWORD?</button>
+			        	<button  class="btn btn-default btn-sm">FORGOT PASSWORD?</button>
 			        </div>
+					<div style="margin-left:245px;margin-top:100px;" class="login">
+			        	<button  type="submit" class="fa fa-lock fa-2x text-white">login?</button>
+			        </div>
+					<!--<div class="forget">-->
+			        	<!--<button class="btn btn-default btn-sm">SIGN UP</button>-->
+			        <!--</div>-->
+					</div>
+
+
 
   				</form>
   			</div>
-  			<a href="#">
+  			<!--<a href="/home">
   				<div class="enterButton">
 	  				<i class="fa fa-lock fa-2x text-white"></i><br>
 	  				<span class="enterText text-white">Enter</span>
 	  			</div>
-  			</a>
+  			</a>-->
 		</div>
 	</div>
 </div>
