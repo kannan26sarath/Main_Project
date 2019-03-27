@@ -3,6 +3,7 @@
 {%block title%}user registration{%endblock%}
 {% block body %}
 {%block name%}<h1><center><ul>User Registration</ul></center></h1>{%endblock%}
+<div class="bg-img">
 <form method="post" autocomplete="off">
     {%csrf_token%}
     {{form|crispy}}
@@ -10,4 +11,5 @@
 
     <input type="submit" class="btn btn-primary"value="register">
 </form>
+</div>
 {% endblock %}
