@@ -56,6 +56,9 @@ class FoodForm(forms.ModelForm):
 
         model = EventFood
         fields = '__all__'
+        labels = {
+            "breakfast": "BreakFast","lunch": "Lunch","tea_snack": "Tea & Snacks","supper": "Supper",
+        }
 
 
     def save(self, commit=True):

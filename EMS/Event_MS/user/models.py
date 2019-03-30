@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 GENDER_CHOICES = (('male', 'Male'), ('female', 'Female'))
 EVENT_CHOICES = (('wedding', 'Wedding'), ('engagement', 'engagement'))
+FOOD_CHOICES =(('veg', 'Vegetarian'),('nonveg', 'Non-vegetarian & Vegetarian'))
+
+
 #RELIGION_CHOICES = (('hindu', 'Hindu'), ('christian', 'Christian'),('muslim', 'Muslim'),)
 
 # class Register(models.Model):
@@ -44,19 +47,30 @@ class EventBook(models.Model):
 
 
 class EventFood(models.Model):
-    FOOD_CHOICES = (
-        ('veg', 'Vegetarian'),
-        ('nonveg', 'Non-vegetarian & Vegetarian'),
-    )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # veg = models.BooleanField(default=False)
-    # non_veg = models.BooleanField(default=False)
-    food_type = models.CharField(max_length=10, choices=FOOD_CHOICES,default=False)
+    # breakfast = models.BooleanField(default=False)
+    # lunch = models.BooleanField(default=False)
+    # tea_snack = models.BooleanField(default=False)
+    # supper = models.BooleanField(default=False)
+
+    food_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+    breakfast_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+    lunch_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+    tea_snack_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+    supper_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+
 
 
 
 
     def __str__(self):
         return self.user.username
+
+class  Breakfast_menu(models.Model):
+    brekfast_item = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.user.brekfast_item
+
 
 # Create your models here.
