@@ -11,4 +11,4 @@ from .models import *
 
 # class RegisterAdmin(admin.ModelAdmin):
 
-admin.site.register(EventFood)
+admin.site.register(Manufacturer)

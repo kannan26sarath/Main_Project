@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 
@@ -46,31 +47,47 @@ class EventBook(models.Model):
         return self.user.username
 
 
-class EventFood(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # breakfast = models.BooleanField(default=False)
-    # lunch = models.BooleanField(default=False)
-    # tea_snack = models.BooleanField(default=False)
-    # supper = models.BooleanField(default=False)
-
-    food_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
-    breakfast_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
-    lunch_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
-    tea_snack_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
-    supper_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
-
-
-
-
-
-    def __str__(self):
-        return self.user.username
-
-class  Breakfast_menu(models.Model):
-    brekfast_item = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.user.brekfast_item
+# class EventFood(models.Model):
+#     # user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     # breakfast = models.BooleanField(default=False)
+#     # lunch = models.BooleanField(default=False)
+#     # tea_snack = models.BooleanField(default=False)
+#     # supper = models.BooleanField(default=False)
+#
+#     food_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+#     breakfast_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+#     lunch_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+#     tea_snack_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+#     supper_type = models.CharField(max_length=10, choices=FOOD_CHOICES)
+#
+#
+#
+#
+#
+#     def __str__(self):
+#         return self.user.username
+#
+# class  Breakfast_menu(models.Model):
+#     brekfast_item = models.CharField(max_length=10)
+#
+#     def __str__(self):
+#         return self.user.brekfast_item
 
 
 # Create your models here.
+class Manufacturer(models.Model):
+    stage_name = models.CharField(max_length=250)
+    #country = models.CharField(max_length=150)
+    #estblshd_yr = models.IntegerField(max_length=5)
+    design = models.FileField()
+    stage_price = models.IntegerField(max_length=12, blank=True, null=False)
+
+    def __str__(self):
+        return self.stage_name
+
+    """def get_absolute_url(self):
+        return reverse('user:stage_detail', kwargs={'pk':self.pk})"""
+
+
+
+

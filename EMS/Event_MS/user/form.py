@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
-from .models import RegUser, EventBook ,EventFood
+from .models import RegUser, EventBook
 
 
 class register_form (UserCreationForm):
@@ -50,23 +50,23 @@ class BookForm(forms.ModelForm):
             user.save()
         return user
 
-class FoodForm(forms.ModelForm):
-
-    class Meta:
-
-        model = EventFood
-        fields = '__all__'
-        labels = {
-            "breakfast": "BreakFast","lunch": "Lunch","tea_snack": "Tea & Snacks","supper": "Supper",
-        }
-
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-
-        if commit:
-            user.save()
-        return user
+# class FoodForm(forms.ModelForm):
+#
+#     class Meta:
+#
+#         model = EventFood
+#         fields = '__all__'
+#         labels = {
+#             "breakfast": "BreakFast","lunch": "Lunch","tea_snack": "Tea & Snacks","supper": "Supper",
+#         }
+#
+#
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#
+#         if commit:
+#             user.save()
+#         return user
 
 
 

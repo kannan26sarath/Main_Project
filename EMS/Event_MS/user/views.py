@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import RegUser
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
+
+from .models import RegUser, Manufacturer
 from django.shortcuts import render
-from .form import register_form, RegUserForm, BookForm ,FoodForm
+from django.views import generic
+from .form import register_form, RegUserForm, BookForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -11,7 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home_view(request):
-    return render(request, "user/login.html")
+    return render(request, "user/home.html")
 
 
 def login_view(request):
@@ -72,19 +76,48 @@ def booking_view(request):
     return render(request,'user/book_event.html', { 'pform': evetbookform})
 
 
-def food_view(request):
-    #form = register_form()
-    foodbookform = FoodForm()
-
-    if request.method == 'POST':
-
-        foodbookform = FoodForm(request.POST)
-        if foodbookform.is_valid():
-
-
-           food = foodbookform.save(commit=False)
-
-           food.save()
-
-    return render(request,'user/catering.html', { 'pform': foodbookform})
+# def food_view(request):
+#     #form = register_form()
+#     foodbookform = FoodForm()
+#
+#     if request.method == 'POST':
+#
+#         foodbookform = FoodForm(request.POST)
+#         if foodbookform.is_valid():
+#
+#
+#            food = foodbookform.save(commit=False)
+#
+#            food.save()
+#
+#     return render(request,'user/catering.html', { 'pform': foodbookform})
 # Create your views here.
+
+
+
+class IndexView(generic.ListView):
+    template_name = 'user/decoration.html'
+    context_object_name = 'all_manufacturers'
+
+    def get_queryset(self):
+        return Manufacturer.objects.all()
+
+class DeatailsView(generic.DetailView):
+    model = Manufacturer
+    template_name = 'user/stage_detail.html'
+
+
+
+def check_view(request):
+    post = Manufacturer.objects.all()
+    context = {
+    'post': post
+    }
+    return render(request, 'user/decoration.html', context)
+
+
+
+
+
+
+
