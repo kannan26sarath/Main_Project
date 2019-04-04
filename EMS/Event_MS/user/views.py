@@ -97,23 +97,44 @@ def booking_view(request):
 
 class IndexView(generic.ListView):
     template_name = 'user/decoration.html'
+    print("hi")
     context_object_name = 'all_manufacturers'
+    print(context_object_name)
 
     def get_queryset(self):
         return Manufacturer.objects.all()
 
 class DeatailsView(generic.DetailView):
     model = Manufacturer
-    template_name = 'user/stage_detail.html'
+    template_name = 'user/detail.html'
+
+class ManufactureCreate(CreateView):
+    model = Manufacturer
+    fields = ['design','stage_name','stage_price']
+
+
+class ManufactureUpdate(UpdateView):
+    model = Manufacturer
+    fields = ['design','stage_name','stage_price' ]
+
+class ManufactureDelete(DeleteView):
+    model = Manufacturer
+    success_url = reverse_lazy('user:decoration')
+
 
 
 
 def check_view(request):
     post = Manufacturer.objects.all()
+    print('hi')
     context = {
     'post': post
     }
+    print(post)
     return render(request, 'user/decoration.html', context)
+
+def sample_view(request):
+    return render(request, "user/sample.html")
 
 
 

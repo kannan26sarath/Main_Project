@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 
+
 # Create your models here.
 GENDER_CHOICES = (('male', 'Male'), ('female', 'Female'))
 EVENT_CHOICES = (('wedding', 'Wedding'), ('engagement', 'engagement'))
@@ -85,8 +86,8 @@ class Manufacturer(models.Model):
     def __str__(self):
         return self.stage_name
 
-    """def get_absolute_url(self):
-        return reverse('user:stage_detail', kwargs={'pk':self.pk})"""
+    def get_absolute_url(self):
+        return reverse('user:detail', kwargs={'pk':self.pk})
 
 
 
