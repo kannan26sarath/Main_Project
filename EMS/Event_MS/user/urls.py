@@ -15,7 +15,9 @@ urlpatterns = [
     path('Decorating/',views.check_view, name='decor'),
     #path('Sdetail/',views.DeatailsView.as_view(), name='details'),
     path('<int:pk>/',views.DeatailsView.as_view(), name='detail'),
-    path('sample/', views.sample_view, name="sample"),
+
+    path('<int:pk>/', views.DeatailsView.as_view(), name="sample"),
+    # path('Detail', views.sam2_view, name="sample2"),
 
 ]
 

@@ -82,6 +82,7 @@ class Manufacturer(models.Model):
     #estblshd_yr = models.IntegerField(max_length=5)
     design = models.FileField()
     stage_price = models.IntegerField(max_length=12, blank=True, null=False)
+    s_description = models.TextField(blank=True, null=False)
 
     def __str__(self):
         return self.stage_name

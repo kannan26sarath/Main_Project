@@ -126,15 +126,16 @@ class ManufactureDelete(DeleteView):
 
 def check_view(request):
     post = Manufacturer.objects.all()
-    print('hi')
+
     context = {
     'post': post
     }
     print(post)
     return render(request, 'user/decoration.html', context)
 
-def sample_view(request):
-    return render(request, "user/sample.html")
+# def sam2_view(request):
+#     return render(request, "user/detail.html")
+
 
 
 
