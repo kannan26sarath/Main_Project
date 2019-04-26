@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
+from user.models import *
+from user import config
 
-from .models import RegUser, Manufacturer
+#from .models import RegUser, Manufacturer, Supper, Tea, Lunch, Breakfast
 from django.shortcuts import render
 from django.views import generic
 from .form import register_form, RegUserForm, BookForm
@@ -24,6 +26,9 @@ def login_view(request):
          pw = request.POST['password']
          user=authenticate(request,username=un,password=pw)
          if user:
+             config.uid = user.id
+             print(config.uid)
+
              return render(request, "user/home.html")
          else:
              messages.error(request, 'Invalid credinals !')
@@ -95,14 +100,16 @@ def booking_view(request):
 
 
 
-class IndexView(generic.ListView):
-    template_name = 'user/decoration.html'
-    print("hi")
-    context_object_name = 'all_manufacturers'
-    print(context_object_name)
-
-    def get_queryset(self):
-        return Manufacturer.objects.all()
+# class IndexView(generic.ListView):
+#     template_name = 'user/decoration.html'
+#
+#     context_object_name = 'all_manufacturers'
+#
+#
+#
+#
+#     def get_queryset(self):
+#         return Manufacturer.objects.all()
 
 class DeatailsView(generic.DetailView):
     model = Manufacturer
@@ -130,15 +137,94 @@ def check_view(request):
     context = {
     'post': post
     }
+
     print(post)
     return render(request, 'user/decoration.html', context)
 
-# def sam2_view(request):
-#     return render(request, "user/detail.html")
+def food_view(request):
+    return render(request, "user/catering.html")
 
+def B_view(request):
+    bfast = Breakfast.objects.all()
 
+    context = {
+    'bfast': bfast
+    }
+    print(bfast)
+    return render(request, 'user/breakfast.html', context)
+class BfDeatailsView(generic.DetailView):
+    model = Breakfast
+    template_name = 'user/Bdetail.html'
 
+def L_view(request):
+    lfast = Lunch.objects.all()
 
+    context = {
+    'lfast': lfast
+    }
+    print(lfast)
+    return render(request, 'user/lunch.html', context)
+class LDeatailsView(generic.DetailView):
+    model = Lunch
+    template_name = 'user/Ldetail.html'
+def T_view(request):
+    tfast = Tea.objects.all()
+
+    context = {
+    'tfast': tfast
+    }
+    print(tfast)
+    return render(request, 'user/tea&snacks.html', context)
+class TDeatailsView(generic.DetailView):
+    model = Tea
+    template_name = 'user/TSdetail.html'
+def S_view(request):
+    sfast = Supper.objects.all()
+
+    context = {
+    'sfast': sfast
+    }
+    print(sfast)
+    return render(request, 'user/supper.html', context)
+class SDeatailsView(generic.DetailView):
+    model = Supper
+    template_name = 'user/Sdetail.html'
+
+def cart_view(request):
+    if request.method=='POST':
+        if request.POST.get('cart'):
+            print(config.uid)
+            u_id= config.uid
+            u_id = User.objects.get(id=u_id)
+            service_id = request.POST.get('Did')
+            service_id = Manufacturer.objects.get(id=service_id)
+            event_dt= request.POST.get('EventDay')
+            obj = Cart(user_id=u_id, service_id=service_id, event_date=event_dt)
+            obj.save()
+            return render(request, "user/home.html",{'message':'added to cart successfully'})
+    else:
+
+        return render(request, "user/home.html")
+
+            #return HttpResponse (decor_id + event_dt + str(u_id))
+
+def Booknow_view(request):
+    if request.method=='POST':
+        if request.POST.get('booknow'):
+            print(config.uid)
+            u_id= config.uid
+            u_id = User.objects.get(id=u_id)
+            service_id = request.POST.get('Did')
+            service_id = Manufacturer.objects.get(id=service_id)
+            event_dt= request.POST.get('EventDay')
+            obj = Cart(user_id=u_id, service_id=service_id, event_date=event_dt)
+            obj.save()
+            return render(request, "user/home.html",{'message':'added to cart successfully'})
+    else:
+
+        return render(request, "user/home.html")
+def payment_view(request):
+    return render(request, "user/payment.html")
 
 
 

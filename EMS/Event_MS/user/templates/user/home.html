@@ -2,6 +2,7 @@
 {%load static%}
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+  <link rel="icon" type="image/x-icon" href="../../static/user/img/favicon.png">
   <meta charset="utf-8">
   <title>Wedding Queens</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -55,7 +56,7 @@ Header
         <li class="menu-has-children"><a href="#">Services</a>
           <ul>
             <li><a href="/Decorating">Decorations</a></li>
-            <li><a href="#">Catering</a></li>
+            <li><a href="/Fooding">Catering</a></li>
             <li><a href="#">Venue Booking</a></li>
             <li><a href="#">Transportation</a></li>
           </ul>
@@ -90,10 +91,16 @@ Header
 ============================-->
 <section id="hero">
   <div class="hero-container">
-    <h1>Wedding Queens</h1>
+    <h1>   Wedding Queen</h1>
     <h2>We Plan, You Party</h2>
     <a href="/Booking" class="btn-get-started">Full Event Booking</a>
+    {%if message%}
+    <p>{{message}}</p>
+  {%endif%}
   </div>
+  <div>
+
+</div>
 </section><!--&lt;!&ndash; #hero &ndash;&gt;-->
 
 </body>

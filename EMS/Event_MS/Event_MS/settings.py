@@ -128,3 +128,7 @@ STATICFILES_DIRS =[
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+PAYMENT_VARIANTS = {
+    'razorpay': ('django_payments_razorpay.RazorPayProvider', {
+        'public_key': 'rzp_test_o5pDfiapOvkScn',
+        'secret_key': '7d14aF067C1IIQZhbStQL3HS'})}

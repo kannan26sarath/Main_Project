@@ -16,8 +16,19 @@ urlpatterns = [
     #path('Sdetail/',views.DeatailsView.as_view(), name='details'),
     path('<int:pk>/',views.DeatailsView.as_view(), name='detail'),
 
-    path('<int:pk>/', views.DeatailsView.as_view(), name="sample"),
-    # path('Detail', views.sam2_view, name="sample2"),
+    # path('<int:pk>/', views.DeatailsView.as_view(), name="sample"),
+    # path('food', views.my_view, name="sample2"),
+    path('Fooding/',views.food_view, name='food'),
+    path('Breakfast/',views.B_view, name='breakfast'),
+    path('Lunch/',views.L_view, name='lunch'),
+    path('Tea/',views.T_view, name='tea'),
+    path('Supper/',views.S_view, name='supper'),
+    path('Cart/', views.cart_view, name="cart"),
+    path('Pay/', views.payment_view, name="payment"),
+    path('Breakfast/<int:pk>/',views.BfDeatailsView.as_view(), name='Bdetail'),
+    path('Lunch/<int:pk>/',views.LDeatailsView.as_view(), name='Ldetail'),
+    path('Tea/<int:pk>/',views.TDeatailsView.as_view(), name='Tdetail'),
+    path('Supper/<int:pk>/',views.SDeatailsView.as_view(), name='Sdetail'),
 
 ]
 

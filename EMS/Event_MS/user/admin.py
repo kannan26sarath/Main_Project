@@ -12,3 +12,8 @@ from .models import *
 # class RegisterAdmin(admin.ModelAdmin):
 
 admin.site.register(Manufacturer)
+admin.site.register(Breakfast)
+admin.site.register(Lunch)
+admin.site.register(Tea)
+admin.site.register(Supper)
+admin.site.register(Cart)

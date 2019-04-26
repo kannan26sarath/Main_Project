@@ -91,5 +91,83 @@ class Manufacturer(models.Model):
         return reverse('user:detail', kwargs={'pk':self.pk})
 
 
+class Breakfast(models.Model):
+    B_name = models.CharField(max_length=250)
+    B_img = models.FileField()
+    B_price = models.IntegerField(max_length=12, blank=True, null=False)
+    B_description = models.TextField(blank=True, null=False)
+
+    def __str__(self):
+        return self.B_name
+
+    def get_absolute_url(self):
+        return reverse('user:Bdetail', kwargs={'pk':self.pk})
+class Lunch(models.Model):
+    L_name = models.CharField(max_length=250)
+    L_img = models.FileField()
+    L_price = models.IntegerField(max_length=12, blank=True, null=False)
+    L_description = models.TextField(blank=True, null=False)
+
+    def __str__(self):
+        return self.L_name
+
+    def get_absolute_url(self):
+        return reverse('user:Ldetail', kwargs={'pk':self.pk})
+class Tea(models.Model):
+    T_name = models.CharField(max_length=250)
+    T_img = models.FileField()
+    T_price = models.IntegerField(max_length=12, blank=True, null=False)
+    T_description = models.TextField(blank=True, null=False)
+
+    def __str__(self):
+        return self.T_name
+
+    def get_absolute_url(self):
+        return reverse('user:detail', kwargs={'pk':self.pk})
+class Supper(models.Model):
+    S_name = models.CharField(max_length=250)
+    S_img = models.FileField()
+    S_price = models.IntegerField(max_length=12, blank=True, null=False)
+    S_description = models.TextField(blank=True, null=False)
+
+    def __str__(self):
+        return self.S_name
+
+    def get_absolute_url(self):
+
+        return reverse('user:detail', kwargs={'pk':self.pk})
+class Cart(models.Model):
+    #user_id = models.IntegerField(max_length=12, blank=True, null=False)Manufacturer
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    service_id = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    event_date = models.DateField(auto_now=False, auto_now_add=False)
+
+    def __str__(self):
+        return str(self.event_date)
 
 
+class Services(models.Model):
+    s_id = models.IntegerField(max_length=12, blank=True, null=False)
+    service_name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return str(self.service_name)
+
+
+class Subservices(models.Model):
+    # user_id = models.IntegerField(max_length=12, blank=True, null=False)Manufacturer
+
+    sub_sid = models.IntegerField(max_length=12, blank=True, null=False)
+    s_id = models.ForeignKey(Services, on_delete=models.CASCADE)
+    sub_sname = models.CharField(max_length=250)
+    def __str__(self):
+        return str(self.sub_sname)
+
+class Booknow(models.Model):
+
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    service_id = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    event_date = models.DateField(auto_now=False, auto_now_add=False)
+
+    def __str__(self):
+        return str(self.event_date)
