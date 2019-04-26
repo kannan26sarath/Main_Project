@@ -60,7 +60,7 @@ def register_view (request):
            reg = profileform.save(commit=False)
            reg.user = user
            reg.save()
-           return render(request, "user/login.html")
+           return redirect("user:login")
     return render(request,'user/register.html', {'form': form, 'pform': profileform})
 
 
@@ -77,7 +77,7 @@ def booking_view(request):
            book = evetbookform.save(commit=False)
            #book.user = user
            book.save()
-           #return render(request, "user/login.html")
+           return redirect("user:fuldecor")
     return render(request,'user/book_event.html', { 'pform': evetbookform})
 
 
@@ -115,20 +115,9 @@ class DeatailsView(generic.DetailView):
     model = Manufacturer
     template_name = 'user/detail.html'
 
-class ManufactureCreate(CreateView):
+class fulDeatailsView(generic.DetailView):
     model = Manufacturer
-    fields = ['design','stage_name','stage_price']
-
-
-class ManufactureUpdate(UpdateView):
-    model = Manufacturer
-    fields = ['design','stage_name','stage_price' ]
-
-class ManufactureDelete(DeleteView):
-    model = Manufacturer
-    success_url = reverse_lazy('user:decoration')
-
-
+    template_name = 'user/fulldetail.html'
 
 
 def check_view(request):
@@ -140,6 +129,15 @@ def check_view(request):
 
     print(post)
     return render(request, 'user/decoration.html', context)
+def fulcheck_view(request):
+    post = Manufacturer.objects.all()
+
+    context = {
+    'post': post
+    }
+
+    print(post)
+    return render(request, 'user/fulldecor.html', context)
 
 def food_view(request):
     return render(request, "user/catering.html")

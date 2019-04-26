@@ -13,7 +13,10 @@ urlpatterns = [
     # path('Fooding/', views.food_view, name='fooding'),
     #path('<int:pk>/',views.DeatailsView.as_view(), name='detail'),
     path('Decorating/',views.check_view, name='decor'),
-    #path('Sdetail/',views.DeatailsView.as_view(), name='details'),
+    path('FulDecorating/',views.fulcheck_view, name='fuldecor'),
+
+
+    path('FulDecorating/<int:pk>/',views.fulDeatailsView.as_view(), name='fulldetail'),
     path('<int:pk>/',views.DeatailsView.as_view(), name='detail'),
 
     # path('<int:pk>/', views.DeatailsView.as_view(), name="sample"),
