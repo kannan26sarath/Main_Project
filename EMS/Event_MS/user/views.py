@@ -225,5 +225,17 @@ def payment_view(request):
     return render(request, "user/payment.html")
 
 
+def oops_view(request):
+    return render(request, "user/transport.html")
+def contact_view(request):
+    return render(request, "user/contactus.html")
 
+def venue_view(request):
+    vfast = Venue.objects.all()
 
+    context = {
+    'vfast': vfast
+    }
+
+    print(vfast)
+    return render(request, 'user/venue.html', context)

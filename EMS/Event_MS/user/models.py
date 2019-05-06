@@ -147,7 +147,7 @@ class Cart(models.Model):
 
 
 class Services(models.Model):
-    s_id = models.IntegerField(max_length=12, blank=True, null=False)
+
     service_name = models.CharField(max_length=250)
 
     def __str__(self):
@@ -155,13 +155,14 @@ class Services(models.Model):
 
 
 class Subservices(models.Model):
-    # user_id = models.IntegerField(max_length=12, blank=True, null=False)Manufacturer
-
-    sub_sid = models.IntegerField(max_length=12, blank=True, null=False)
-    s_id = models.ForeignKey(Services, on_delete=models.CASCADE)
-    sub_sname = models.CharField(max_length=250)
+    service_id = models.ForeignKey(Services, on_delete=models.CASCADE)
+    #sub_sname = models.CharField(max_length=250)
+    name = models.CharField(max_length=250)
+    design = models.FileField(default='ab.jpg')
+    price = models.IntegerField(max_length=12, blank=True, null=False)
+    description = models.TextField(blank=True, null=False)
     def __str__(self):
-        return str(self.sub_sname)
+        return str(self.name)
 
 class Booknow(models.Model):
 
@@ -171,3 +172,30 @@ class Booknow(models.Model):
 
     def __str__(self):
         return str(self.event_date)
+class Fdtypes(models.Model):
+    sub_service_id = models.ForeignKey(Subservices, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
+    design = models.FileField()
+    price = models.IntegerField(max_length=12, blank=True, null=False)
+    description = models.TextField(blank=True, null=False)
+
+    def __str__(self):
+        return self.name
+
+class Venue(models.Model):
+    V_name = models.CharField(max_length=250)
+    V_img = models.FileField()
+    V_price = models.IntegerField(max_length=12, blank=True, null=False)
+    V_description = models.TextField(blank=True, null=False)
+
+    def __str__(self):
+        return self.V_name
+
+    def get_absolute_url(self):
+        return reverse('user:Vdetail', kwargs={'pk': self.pk})
+class Contactus(models.Model):
+    C_name = models.CharField(max_length=250)
+    C_email = models.CharField(max_length=250)
+    C_message= models.TextField(blank=True,null=False)
+    def __str__(self):
+        return self.C_email

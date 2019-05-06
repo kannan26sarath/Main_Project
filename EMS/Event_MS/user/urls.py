@@ -32,6 +32,10 @@ urlpatterns = [
     path('Lunch/<int:pk>/',views.LDeatailsView.as_view(), name='Ldetail'),
     path('Tea/<int:pk>/',views.TDeatailsView.as_view(), name='Tdetail'),
     path('Supper/<int:pk>/',views.SDeatailsView.as_view(), name='Sdetail'),
+    path('transport/', views.oops_view, name="transport"),
+    path('contactus/', views.contact_view, name="contactus"),
+    # path('Venue/<int:pk>/',views.SDeatailsView.as_view(), name='Sdetail'),
+    path('Venue/',views.venue_view, name='venue'),
 
 ]
 
