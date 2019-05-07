@@ -227,8 +227,8 @@ def payment_view(request):
 
 def oops_view(request):
     return render(request, "user/transport.html")
-def contact_view(request):
-    return render(request, "user/contactus.html")
+
+
 
 def venue_view(request):
     vfast = Venue.objects.all()
@@ -239,3 +239,42 @@ def venue_view(request):
 
     print(vfast)
     return render(request, 'user/venue.html', context)
+def contactus_view(request):
+    if request.method=='POST':
+        if request.POST.get('send'):
+
+
+
+            c_name= request.POST.get('name')
+            c_email = request.POST.get('email')
+            c_message = request.POST.get('message')
+
+            obj = Contactus(C_name=c_name, C_email=c_email, C_message=c_message)
+            obj.save()
+            return render(request, "user/home.html",{'message':'contact send successfully'})
+    else:
+        return render(request, "user/contactus.html")
+
+def feedback_view(request):
+    if request.method=='POST':
+        if request.POST.get('Send Feedback'):
+
+            u_id= config.uid
+            u_id = User.objects.get(id=u_id)
+            f_name = request.POST.get('name')
+            f_email = request.POST.get('email')
+            f_review = request.POST.get('review')
+            f_OE = request.POST.get('radio')
+            f_TR = request.POST.get('radio1')
+            f_OS = request.POST.get('radio2')
+            f_satisfaction = request.POST.get('radio3')
+            f_rating = request.POST.get('rating')
+
+
+
+            obj = Feedback(F_name=f_name, F_email=f_email, F_review=f_review,F_OE=f_OE,F_TR=f_TR,F_OS=f_OS,F_satisfaction=f_satisfaction,F_rating=f_rating,user_id=u_id)
+            obj.save()
+            return render(request, "user/home.html",{'message':'feed back send successfully'})
+    else:
+
+        return render(request, "user/feedback.html")

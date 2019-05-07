@@ -199,3 +199,17 @@ class Contactus(models.Model):
     C_message= models.TextField(blank=True,null=False)
     def __str__(self):
         return self.C_email
+class Feedback(models.Model):
+    F_name = models.CharField(max_length=250)
+    F_email = models.CharField(max_length=250)
+    F_review= models.TextField(blank=True,null=False)
+    F_OE = models.CharField(max_length=250)
+    F_TR = models.CharField(max_length=250)
+    F_OS = models.CharField(max_length=250)
+    F_satisfaction = models.CharField(max_length=250)
+    F_rating = models.TextField(max_length=250)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.F_name
+
