@@ -187,6 +187,7 @@ class Venue(models.Model):
     V_img = models.FileField()
     V_price = models.IntegerField(max_length=12, blank=True, null=False)
     V_description = models.TextField(blank=True, null=False)
+    V_location = models.CharField(max_length=250)
 
     def __str__(self):
         return self.V_name

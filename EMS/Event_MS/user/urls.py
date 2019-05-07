@@ -38,6 +38,9 @@ urlpatterns = [
     path('Venue/',views.venue_view, name='venue'),
     path('contactus/', views.contactus_view, name="contactus"),
     path('Feedback/', views.feedback_view, name="feedback"),
+    path('venue/<int:pk>/',views.VenueDeatailsView.as_view(), name='vdetail'),
+    path('ajax/venue-list/', views.ajax_load_venuelist, name='ajax_venue_list'),
+    path('cartdetail/', views.fullcart_view, name="fullcart"),
 
 ]
 

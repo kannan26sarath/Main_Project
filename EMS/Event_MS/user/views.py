@@ -239,6 +239,9 @@ def venue_view(request):
 
     print(vfast)
     return render(request, 'user/venue.html', context)
+class VenueDeatailsView(generic.DetailView):
+    model = Venue
+    template_name = 'user/vdetail.html'
 def contactus_view(request):
     if request.method=='POST':
         if request.POST.get('send'):
@@ -278,3 +281,14 @@ def feedback_view(request):
     else:
 
         return render(request, "user/feedback.html")
+
+
+def ajax_load_venuelist(request):
+    print("inside venue ajax")
+    venue_id = request.GET.get('venue')
+    print(venue_id)
+    vfast = Venue.objects.filter(V_location=venue_id)
+    print(vfast)
+    return render(request, 'user/ajax_venue_list.html', {'vfast': vfast})
+def fullcart_view(request):
+    return render(request, "user/cart.html")
