@@ -7,6 +7,7 @@ app_name='user'
 urlpatterns = [
 
     path('home/', views.home_view, name="home"),
+    path('vhome/', views.vhome_view, name="vhome"),
     path('',views.login_view, name="login"),
     path('Register/', views.register_view, name='register'),
     path('Booking/', views.booking_view, name='booking'),
@@ -41,6 +42,9 @@ urlpatterns = [
     path('venue/<int:pk>/',views.VenueDeatailsView.as_view(), name='vdetail'),
     path('ajax/venue-list/', views.ajax_load_venuelist, name='ajax_venue_list'),
     path('cartdetail/', views.fullcart_view, name="fullcart"),
+    #path('test/', views.test_view, name="test"),
+    path('food/', views.food_pack, name="food_pack"),
+
 
 ]
 

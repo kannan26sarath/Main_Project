@@ -214,3 +214,11 @@ class Feedback(models.Model):
     def __str__(self):
         return self.F_name
 
+class Foodpack(models.Model):
+    P_name = models.CharField(max_length=250)
+    P_menu = models.CharField(max_length=250)
+
+
+    def __str__(self):
+        return self.P_name
+

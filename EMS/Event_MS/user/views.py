@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from user.models import *
 from user import config
+from django.db import connection
+
 
 #from .models import RegUser, Manufacturer, Supper, Tea, Lunch, Breakfast
 from django.shortcuts import render
@@ -18,6 +20,8 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def home_view(request):
     return render(request, "user/home.html")
+def vhome_view(request):
+    return render(request, "user/vhome.html")
 
 
 def login_view(request):
@@ -291,4 +295,63 @@ def ajax_load_venuelist(request):
     print(vfast)
     return render(request, 'user/ajax_venue_list.html', {'vfast': vfast})
 def fullcart_view(request):
-    return render(request, "user/cart.html")
+    cursor = connection.cursor()
+    sql = """
+    SELECT uc.event_date, um.design, um.stage_name, um.stage_price
+from user_cart uc
+left outer join user_manufacturer um on um.id = uc.service_id_id
+    """
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    res_list = []
+    for r in res:
+        t = {}
+        t['design'] = str(r[1])
+        t['stage_name'] = str(r[2])
+        t['stage_price'] = str(r[3])
+        t['event_date'] = str((r[0]))
+
+
+        res_list.append(t)
+
+    return render(request, 'user/cart.html',{'res':res_list})
+# def test_view(request):
+#     ffast = Venue.objects.all()
+#
+#     context = {
+#         'ffast': ffast
+#     }
+#
+#     print(ffast)
+#     return render(request, "user/catering2.html".context)
+# def ajax_load_foodlist(request):
+#     print("inside venue ajax")
+#     foodpack_id = request.GET.get('catering2')
+#     print(foodpack_id)
+#     ffast = Venue.objects.filter(V_location=venue_id)
+#     print(vfast)
+#     return render(request, 'user/ajax_venue_list.html', {'vfast': vfast})
+"""def test_view(request):
+    return render(request, "user/catering2.html")"""
+
+#function to convert queries to dict
+def dictfetchall(cursor):
+    """Return all rows from a cursor as a dict"""
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+
+def food_pack(request):
+    food_cursor =connection.cursor()
+    food_cursor.execute("""
+    select DISTINCT user_foodpack.P_name from user_foodpack""")
+    food_dict= {}
+    food_dict = dictfetchall(food_cursor)
+    print("inside food pack")
+    print(food_dict)
+    return render(request, "user/catering2.html",{'food_dict':food_dict})
+
+
